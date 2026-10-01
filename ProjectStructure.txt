@@ -1,0 +1,547 @@
+============================================================
+             PET CARE SERVICE PLATFORM
+                  JAVA OOP MINI PROJECT
+============================================================
+
+
+PROJECT OVERVIEW
+----------------
+A pet care service platform where:
+
+1. USER / PET OWNER
+   - Registers pets
+   - Searches services
+   - Books services
+   - Makes payments
+   - Gives reviews
+
+2. SERVICE PROVIDER
+   - Accepts/rejects bookings
+   - Provides pet care services
+   - Updates service status
+   - Views assigned bookings
+
+3. ADMIN / MANAGER
+   - Manages users
+   - Manages service providers
+   - Manages services
+   - Manages bookings
+   - Controls the complete system
+
+
+============================================================
+1. Person.java
+============================================================
+
+PURPOSE:
+Common parent class for User, ServiceProvider and Admin.
+
+FIELDS:
+1. personId
+2. name
+3. mobileNo
+4. email
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. getPersonId()
+2. getName()
+3. getMobileNo()
+4. getEmail()
+5. displayBasicInfo()
+
+INHERITED BY:
+- User
+- ServiceProvider
+- Admin
+
+
+============================================================
+2. User.java
+============================================================
+
+EXTENDS:
+- Person
+
+FIELDS:
+1. petList
+2. bookingList
+
+CONSTRUCTOR:
+- Constructor using User + inherited Person fields
+
+METHODS:
+1. addPet()
+2. viewPets()
+3. bookService()
+4. cancelBooking()
+5. viewBookings()
+6. giveReview()
+
+
+============================================================
+3. ServiceProvider.java
+============================================================
+
+EXTENDS:
+- Person
+
+FIELDS:
+1. providerType
+2. experience
+3. specialization
+4. available
+5. assignedBookings
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. acceptBooking()
+2. rejectBooking()
+3. startService()
+4. completeService()
+5. viewAssignedBookings()
+6. displayInfo()
+
+
+============================================================
+4. Veterinarian.java
+============================================================
+
+EXTENDS:
+- ServiceProvider
+
+FIELDS:
+1. clinicName
+2. consultationFee
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. displayInfo()       [OVERRIDING]
+2. provideService()
+
+
+============================================================
+5. PetGroomer.java
+============================================================
+
+EXTENDS:
+- ServiceProvider
+
+FIELDS:
+1. groomingType
+2. groomingFee
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. displayInfo()       [OVERRIDING]
+2. provideService()
+
+
+============================================================
+6. PetTrainer.java
+============================================================
+
+EXTENDS:
+- ServiceProvider
+
+FIELDS:
+1. trainingType
+2. trainingFee
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. displayInfo()       [OVERRIDING]
+2. provideService()
+
+
+============================================================
+7. Pet.java
+============================================================
+
+FIELDS:
+1. petId
+2. petName
+3. petType
+4. breed
+5. age
+6. ownerId
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. getPetId()
+2. getPetName()
+3. displayPetInfo()
+
+
+============================================================
+8. Service.java
+============================================================
+
+PURPOSE:
+Represents a service offered by the platform.
+
+FIELDS:
+1. serviceId
+2. serviceName
+3. serviceDescription
+4. servicePrice
+5. serviceAvailable
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. getServiceId()
+2. displayServiceInfo()
+3. updatePrice()
+4. enableService()
+5. disableService()
+
+
+============================================================
+9. Booking.java
+============================================================
+
+PURPOSE:
+Connects User + Pet + Service + ServiceProvider.
+
+FIELDS:
+1. bookingId
+2. userId
+3. petId
+4. serviceId
+5. providerId
+6. bookingDate
+7. bookingStatus
+8. totalAmount
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. confirmBooking()
+2. cancelBooking()
+3. updateBookingStatus()
+4. displayBookingInfo()
+
+BOOKING STATUS:
+1. PENDING
+2. CONFIRMED
+3. IN_PROGRESS
+4. COMPLETED
+5. CANCELLED
+
+
+============================================================
+10. PaymentGateway.java
+============================================================
+
+METHODS:
+1. processPayment()
+2. displayPaymentStatus()
+
+PAYMENT STATUS:
+1. PENDING
+2. SUCCESS
+3. FAILED
+
+
+============================================================
+11. ReceiptGenerator.java
+============================================================
+
+METHODS:
+1. generateReceipt()
+
+RECEIPT DETAILS:
+1. Booking ID
+2. User Name
+3. Pet Name
+4. Service Name
+5. Service Provider
+6. Amount
+7. Payment Status
+
+
+============================================================
+12. Review.java
+============================================================
+
+FIELDS:
+1. reviewId
+2. userId
+3. providerId
+4. rating
+5. comment
+
+CONSTRUCTOR:
+- Constructor using all fields
+
+METHODS:
+1. displayReview()
+2. updateReview()
+
+
+============================================================
+13. Admin.java
+============================================================
+
+EXTENDS:
+- Person
+
+FIELDS:
+1. final ADMIN_USERNAME
+2. final ADMIN_PASSWORD
+
+METHODS:
+1. boolean authenticate()
+2. addUser()
+3. removeUser()
+4. addServiceProvider()
+5. removeServiceProvider()
+6. addService()
+7. removeService()
+8. viewAllUsers()
+9. viewAllProviders()
+10. viewAllBookings()
+
+
+============================================================
+14. ServiceInventory.java
+============================================================
+
+FIELDS:
+1. List<Service> services
+2. List<ServiceProvider> serviceProviders
+
+CONSTRUCTOR:
+- No-argument constructor
+
+METHODS:
+1. addService()
+2. removeService()
+3. getAllServices()
+4. showAvailableServices()
+5. addServiceProvider()
+6. removeServiceProvider()
+7. getAllServiceProviders()
+8. showAvailableProviders()
+
+
+============================================================
+15. EmailService.java
+============================================================
+
+METHODS:
+1. sendBookingConfirmation()
+2. sendCancellationNotification()
+3. sendServiceCompletionNotification()
+
+
+============================================================
+16. MainServices.java
+============================================================
+
+MAIN MENU:
+
+========================================
+       PET CARE SERVICE PLATFORM
+========================================
+
+1. User
+2. Service Provider
+3. Admin
+4. Exit
+
+
+---------------- USER MENU ----------------
+
+1. Register User
+2. Add Pet
+3. View My Pets
+4. Show Available Services
+5. Show Available Service Providers
+6. Book a Service
+7. View My Bookings
+8. Cancel Booking
+9. Make Payment
+10. Give Review
+11. Logout
+
+
+----------- SERVICE PROVIDER MENU -----------
+
+1. View Profile
+2. View Assigned Bookings
+3. Accept Booking
+4. Reject Booking
+5. Start Service
+6. Complete Service
+7. View Reviews
+8. Logout
+
+
+---------------- ADMIN MENU ----------------
+
+1. Add User
+2. Remove User
+3. View All Users
+
+4. Add Service Provider
+5. Remove Service Provider
+6. View All Service Providers
+
+7. Add Service
+8. Remove Service
+9. View All Services
+
+10. View All Pets
+11. View All Bookings
+
+12. Logout
+
+
+SEARCH METHODS IN MainServices:
+
+1. findUserByID()
+2. findPetByID()
+3. findProviderByID()
+4. findServiceByID()
+5. findBookingByID()
+
+
+============================================================
+                CLASS RELATIONSHIPS
+============================================================
+
+                         Person
+                           |
+             +-------------+-------------+
+             |             |             |
+             v             v             v
+           User      ServiceProvider    Admin
+                           |
+                 +---------+---------+
+                 |         |         |
+                 v         v         v
+          Veterinarian  PetGroomer  PetTrainer
+
+
+User --------------------> Pet
+  |
+  |
+  v
+Booking <---------------- Service
+  |
+  |
+  v
+ServiceProvider
+  |
+  v
+Review
+
+
+Booking
+   |
+   v
+PaymentGateway
+   |
+   v
+ReceiptGenerator
+
+
+Admin
+   |
+   v
+ServiceInventory
+
+
+============================================================
+              OOP CONCEPTS TO PRACTICE
+============================================================
+
+1. Class and Object
+2. Encapsulation
+3. Constructors
+4. this keyword
+5. this() constructor call
+6. super()
+7. Inheritance
+8. Hierarchical Inheritance
+9. Multilevel Inheritance
+10. Method Overriding
+11. Runtime Polymorphism
+12. ArrayList
+13. static
+14. final
+15. Association between classes
+16. Object searching using ID
+17. Multiple classes working together
+
+
+============================================================
+                    BASIC FLOW
+============================================================
+
+USER:
+
+Register
+   |
+Add Pet
+   |
+View Services
+   |
+Select Provider
+   |
+Create Booking
+   |
+Payment
+   |
+Service Completed
+   |
+Give Review
+
+
+SERVICE PROVIDER:
+
+Login
+   |
+View Assigned Bookings
+   |
+Accept Booking
+   |
+Start Service
+   |
+Complete Service
+
+
+ADMIN:
+
+Login
+   |
+Manage Users
+   |
+Manage Providers
+   |
+Manage Services
+   |
+Manage Bookings
+   |
+View System Information
+
+
+============================================================
+                    END OF PROJECT
+============================================================
